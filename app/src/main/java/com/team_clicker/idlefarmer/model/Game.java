@@ -7,6 +7,7 @@ import java.util.List;
  */
 
 public class Game {
+    private int id;
     private double exp;
     private double money;
     private double earnBySeconds;
@@ -26,6 +27,14 @@ public class Game {
 
     public double getExp() {
         return exp;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setExp(double exp) {

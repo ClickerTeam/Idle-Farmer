@@ -39,5 +39,25 @@ public class BDDHelper extends SQLiteOpenHelper {
                                                 "name TEXT NOT NULL, " +
                                                 "price REAL NOT NULL, " +
                                                 "coeff REAL NOT NULL)");
+
+        db.execSQL("INSERT INTO game VALUES (1,0,5,0)");
+
+        db.execSQL("INSERT INTO cereals VALUES (1,'Orge',0,2500,1,2500,0,0)");
+
+        db.execSQL("INSERT INTO cereals VALUES (2,'Avoine',0,15000,5,15000,0,0)");
+
+        db.execSQL("INSERT INTO cereals VALUES (3,'Colza',0,50000,20,50000,0,0)");
+
+        db.execSQL("INSERT INTO cereals VALUES (4,'Houblon',0,100000,50,100000,0,0)");
+
+        db.execSQL("INSERT INTO cereals VALUES (5,'Maïs',0,250000,100,250000,0,0)");
+
+        db.execSQL("INSERT INTO cereals VALUES (6,'Riz',0,500000,500,500000,0,0)");
+
+        db.execSQL("INSERT INTO cereals VALUES (7,'Seigle',0,1000000,1000,1000000,0,0)");
+
+        db.execSQL("INSERT INTO cereals VALUES (8,'Lin',0,10000000,2000,10000000,0,0)");
+
+        db.execSQL("INSERT INTO cereals VALUES (9,'Blé',0,5,0.1,5,0,0)");
     }
 }
