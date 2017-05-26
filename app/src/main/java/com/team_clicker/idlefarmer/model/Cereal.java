@@ -1,10 +1,12 @@
 package com.team_clicker.idlefarmer.model;
 
+import java.io.Serializable;
+
 /**
  * Created by pierre on 17/05/2017.
  */
 
-public class Cereal {
+public class Cereal implements Serializable {
     private int id;
     private String name;
     private double basePrice;

@@ -1,28 +1,47 @@
 package com.team_clicker.idlefarmer.model;
 
+import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by pierre on 17/05/2017.
  */
 
-public class Game {
+public class Game implements Serializable {
     private int id;
     private double exp;
     private double money;
     private double earnBySeconds;
-    private List<Cereal> cereals;
+    private Map<String, Cereal> cerealByName;
     private List<Technology> technologies;
 
     public Game() {
     }
 
-    public Game(double exp, double money, double earnBySeconds, List<Cereal> cereals, List<Technology> technologies) {
+    public Game(double exp, double money, double earnBySeconds, Map<String, Cereal> cerealByName, List<Technology> technologies) {
         this.exp = exp;
         this.money = money;
         this.earnBySeconds = earnBySeconds;
-        this.cereals = cereals;
+        this.cerealByName = cerealByName;
         this.technologies = technologies;
+    }
+
+    public void initMapCereal(List<Cereal> cereals){
+        cerealByName = new HashMap<>();
+        for(Cereal cereal : cereals){
+            cerealByName.put(cereal.getName(), cereal);
+        }
+    }
+
+    public Cereal getCerealByName (String name){
+        return cerealByName.get(name);
+    }
+
+    public void updateCereal(Cereal cereal){
+        cerealByName.remove(cereal.getName());
+        cerealByName.put(cereal.getName(), cereal);
     }
 
     public double getExp() {
@@ -57,12 +76,12 @@ public class Game {
         this.earnBySeconds = earnBySeconds;
     }
 
-    public List<Cereal> getCereals() {
-        return cereals;
+    public Map<String, Cereal> getCerealByName() {
+        return cerealByName;
     }
 
-    public void setCereals(List<Cereal> cereals) {
-        this.cereals = cereals;
+    public void setCerealByName(Map<String, Cereal> cerealByName) {
+        this.cerealByName = cerealByName;
     }
 
     public List<Technology> getTechnologies() {

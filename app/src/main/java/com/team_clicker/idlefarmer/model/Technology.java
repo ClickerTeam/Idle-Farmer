@@ -1,10 +1,12 @@
 package com.team_clicker.idlefarmer.model;
 
+import java.io.Serializable;
+
 /**
  * Created by pierre on 17/05/2017.
  */
 
-public class Technology {
+public class Technology implements Serializable {
     private int id;
     private String name;
     private double coeff;
