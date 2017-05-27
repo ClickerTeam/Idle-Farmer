@@ -3,12 +3,13 @@ package com.team_clicker.idlefarmer.bdd;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.team_clicker.idlefarmer.model.Cereal;
 import com.team_clicker.idlefarmer.model.Game;
 import com.team_clicker.idlefarmer.model.Technology;
+
+import java.sql.SQLException;
 
 /**
  * Created by pierr on 17/05/2017.
@@ -45,11 +46,11 @@ public class BDD {
     }
 
     public Cursor getCereals(){
-        return base.rawQuery("SELECT _id, name, level, basePrice, baseYield, currentPrice, currentYield, growthTime FROM cereals", null);
+        return base.rawQuery("SELECT _id, name, level, basePrice, baseYield, currentPrice, currentYield, growthTime, coeff FROM cereals", null);
     }
 
     public Cursor getCereal(int id){
-        return base.rawQuery("SELECT _id, name, level, basePrice, baseYield, currentPrice, currentYield, growthTime FROM cereals where _id = " + id, null);
+        return base.rawQuery("SELECT _id, name, level, basePrice, baseYield, currentPrice, currentYield, growthTime, coeff FROM cereals where _id = " + id, null);
     }
 
     public void removeCereal(int id){
@@ -66,6 +67,7 @@ public class BDD {
         args.put("currentPrice", cereal.getCurrentPrice());
         args.put("currentYield", cereal.getCurrentYield());
         args.put("growthTime", cereal.getGrowthTime());
+        args.put("coeff", cereal.getCoeff());
 
         update("cereals ", cereal.getId(), args);
     }

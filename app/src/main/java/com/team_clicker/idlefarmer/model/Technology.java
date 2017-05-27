@@ -1,12 +1,14 @@
 package com.team_clicker.idlefarmer.model;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
 /**
  * Created by pierre on 17/05/2017.
  */
 
-public class Technology implements Serializable {
+public class Technology implements Serializable, Comparable<Technology>  {
     private int id;
     private String name;
     private double coeff;
@@ -52,5 +54,10 @@ public class Technology implements Serializable {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public int compareTo(@NonNull Technology o) {
+        return getId() - o.getId();
     }
 }

@@ -1,12 +1,14 @@
 package com.team_clicker.idlefarmer.model;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
 /**
  * Created by pierre on 17/05/2017.
  */
 
-public class Cereal implements Serializable {
+public class Cereal implements Serializable, Comparable<Cereal> {
     private int id;
     private String name;
     private double basePrice;
@@ -17,12 +19,13 @@ public class Cereal implements Serializable {
     //TODO Gestion  de l'image
     //private Image picture;
     private int growthTime;
+    private double coeff;
 
     public Cereal() {
 
     }
 
-    public Cereal(int id, String name, double basePrice, double baseYield, int level, double currentPrice, double currentYield, int growthTime) {
+    public Cereal(int id, String name, double basePrice, double baseYield, int level, double currentPrice, double currentYield, int growthTime, double coeff) {
         this.id = id;
         this.name = name;
         this.basePrice = basePrice;
@@ -31,6 +34,7 @@ public class Cereal implements Serializable {
         this.currentPrice = currentPrice;
         this.currentYield = currentYield;
         this.growthTime = growthTime;
+        this.coeff = coeff;
     }
 
     public int getId() {
@@ -95,5 +99,18 @@ public class Cereal implements Serializable {
 
     public void setGrowthTime(int growthTime) {
         this.growthTime = growthTime;
+    }
+
+    public double getCoeff() {
+        return coeff;
+    }
+
+    public void setCoeff(double coeff) {
+        this.coeff = coeff;
+    }
+
+    @Override
+    public int compareTo(@NonNull Cereal o) {
+        return getId() - o.getId();
     }
 }

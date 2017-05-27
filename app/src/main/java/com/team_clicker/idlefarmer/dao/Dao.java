@@ -31,9 +31,12 @@ public abstract class Dao<E> {
     protected int getInsertId(String table){
         int id = 0;
         BDD bdd = new BDD();
-
-        bdd.open(context);
-        id = bdd.getInsertID(table);
+        try {
+            bdd.open(context);
+            id = bdd.getInsertID(table);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
 
         return id;
     }

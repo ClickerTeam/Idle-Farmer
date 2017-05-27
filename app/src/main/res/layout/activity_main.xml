@@ -15,7 +15,7 @@
 
 
                 <TextView
-                    android:id="@+id/lblArgent"
+                    android:id="@+id/lblMoney"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -23,20 +23,20 @@
                     android:textSize="25sp"
                     android:textStyle="bold" />
                 <TextView
-                    android:id="@+id/valueArgent"
+                    android:id="@+id/valueMoney"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/lblArgent"
                     android:layout_alignParentRight="true"
                     android:textSize="15dp"
                     android:textStyle="italic"
-                    android:text="1000 $"/>
+                    android:text="1000 $"
+                    android:layout_below="@+id/lblMoney" />
 
                 <ListView
                     android:id="@+id/cereals"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_below="@id/valueArgent">
+                    android:layout_below="@id/valueMoney">
 
                 </ListView>
             </RelativeLayout>

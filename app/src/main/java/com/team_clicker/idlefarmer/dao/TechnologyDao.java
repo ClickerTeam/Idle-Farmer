@@ -7,6 +7,7 @@ import com.team_clicker.idlefarmer.bdd.BDD;
 import com.team_clicker.idlefarmer.model.Cereal;
 import com.team_clicker.idlefarmer.model.Technology;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,18 +24,22 @@ public class TechnologyDao extends Dao<Technology>{
     public List<Technology> getAll() {
         BDD bdd = new BDD();
         List<Technology> technologies = new ArrayList<>();
-        bdd.open(context);
-        Cursor cursor = bdd.getCereals();
+        try {
+            bdd.open(context);
+            Cursor cursor = bdd.getTechnologies();
 
-        while(cursor.moveToNext()){
-            Technology technology = new Technology();
+            while(cursor.moveToNext()){
+                Technology technology = new Technology();
 
-            technology.setId(cursor.getInt(cursor.getColumnIndex("_id")));
-            technology.setName(cursor.getString(cursor.getColumnIndex("name")));
-            technology.setPrice(cursor.getDouble(cursor.getColumnIndex("price")));
-            technology.setCoeff(cursor.getDouble(cursor.getColumnIndex("coeff")));
+                technology.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+                technology.setName(cursor.getString(cursor.getColumnIndex("name")));
+                technology.setPrice(cursor.getDouble(cursor.getColumnIndex("price")));
+                technology.setCoeff(cursor.getDouble(cursor.getColumnIndex("coeff")));
 
-            technologies.add(technology);
+                technologies.add(technology);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
         }
 
         return technologies;
@@ -44,14 +49,18 @@ public class TechnologyDao extends Dao<Technology>{
     public Technology get(int id) {
         BDD bdd = new BDD();
         Technology technology = new Technology();
-        bdd.open(context);
-        Cursor cursor = bdd.getCereal(id);
+        try {
+            bdd.open(context);
+            Cursor cursor = bdd.getTechnology(id);
 
-        while(cursor.moveToNext()){
-            technology.setId(cursor.getInt(cursor.getColumnIndex("_id")));
-            technology.setName(cursor.getString(cursor.getColumnIndex("name")));
-            technology.setPrice(cursor.getDouble(cursor.getColumnIndex("price")));
-            technology.setCoeff(cursor.getDouble(cursor.getColumnIndex("coeff")));
+            while(cursor.moveToNext()){
+                technology.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+                technology.setName(cursor.getString(cursor.getColumnIndex("name")));
+                technology.setPrice(cursor.getDouble(cursor.getColumnIndex("price")));
+                technology.setCoeff(cursor.getDouble(cursor.getColumnIndex("coeff")));
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
         }
 
         return technology;
@@ -64,14 +73,22 @@ public class TechnologyDao extends Dao<Technology>{
     @Override
     public void update(Technology entity) {
         BDD bdd = new BDD();
-        bdd.open(context);
-        bdd.updateTechnology(entity);
+        try {
+            bdd.open(context);
+            bdd.updateTechnology(entity);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void remove(int id) {
         BDD bdd = new BDD();
-        bdd.open(context);
-        bdd.removeTechnology(id);
+        try {
+            bdd.open(context);
+            bdd.removeTechnology(id);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }

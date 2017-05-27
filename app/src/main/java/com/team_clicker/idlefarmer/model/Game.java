@@ -14,34 +14,18 @@ public class Game implements Serializable {
     private double exp;
     private double money;
     private double earnBySeconds;
-    private Map<String, Cereal> cerealByName;
+    private List<Cereal> cereals;
     private List<Technology> technologies;
 
     public Game() {
     }
 
-    public Game(double exp, double money, double earnBySeconds, Map<String, Cereal> cerealByName, List<Technology> technologies) {
+    public Game(double exp, double money, double earnBySeconds, List<Cereal> cereals, List<Technology> technologies) {
         this.exp = exp;
         this.money = money;
         this.earnBySeconds = earnBySeconds;
-        this.cerealByName = cerealByName;
+        this.cereals = cereals;
         this.technologies = technologies;
-    }
-
-    public void initMapCereal(List<Cereal> cereals){
-        cerealByName = new HashMap<>();
-        for(Cereal cereal : cereals){
-            cerealByName.put(cereal.getName(), cereal);
-        }
-    }
-
-    public Cereal getCerealByName (String name){
-        return cerealByName.get(name);
-    }
-
-    public void updateCereal(Cereal cereal){
-        cerealByName.remove(cereal.getName());
-        cerealByName.put(cereal.getName(), cereal);
     }
 
     public double getExp() {
@@ -76,12 +60,12 @@ public class Game implements Serializable {
         this.earnBySeconds = earnBySeconds;
     }
 
-    public Map<String, Cereal> getCerealByName() {
-        return cerealByName;
+    public List<Cereal> getCereals() {
+        return cereals;
     }
 
-    public void setCerealByName(Map<String, Cereal> cerealByName) {
-        this.cerealByName = cerealByName;
+    public void setCereals(List<Cereal> cereals) {
+        this.cereals = cereals;
     }
 
     public List<Technology> getTechnologies() {
