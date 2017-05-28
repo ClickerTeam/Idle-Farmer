@@ -27,7 +27,8 @@ public class BDDHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE game (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                         "exp REAL NOT NULL, " +
                                         "money REAL NOT NULL, " +
-                                        "earnBySeconds REAL NOT NULL)");
+                                        "earnBySeconds REAL NOT NULL," +
+                                        "dbtIdle INTEGER)");
 
         db.execSQL("CREATE TABLE cereals (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                             "name TEXT NOT NULL, " +
@@ -44,7 +45,7 @@ public class BDDHelper extends SQLiteOpenHelper {
                                                 "price REAL NOT NULL, " +
                                                 "coeff REAL NOT NULL)");
 
-        db.execSQL("INSERT INTO game VALUES (1,0,5,0)");
+        db.execSQL("INSERT INTO game VALUES (1,0,5,0,0)");
 
         db.execSQL("INSERT INTO cereals VALUES (1,'Blé',0,5,0.1,5,0,5,1.1)");
 

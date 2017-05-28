@@ -73,7 +73,7 @@ public class BDD {
     }
 
     public Cursor getGame(){
-        return base.rawQuery("SELECT _id, exp, money, earnBySeconds FROM game", null);
+        return base.rawQuery("SELECT _id, exp, money, earnBySeconds,dbtIdle FROM game", null);
     }
 
     public void removeGame(int id){
@@ -86,6 +86,7 @@ public class BDD {
         args.put("exp", game.getExp());
         args.put("money", game.getMoney());
         args.put("earnBySeconds", game.getEarnBySeconds());
+        args.put("dbtIdle", game.getDbtIdle());
 
         update("game ", game.getId(), args);
     }

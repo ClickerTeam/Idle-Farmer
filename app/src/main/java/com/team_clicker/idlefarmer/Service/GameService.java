@@ -64,11 +64,11 @@ public class GameService implements Serializable {
 
         game.getCereals().set(cereal.getId() - 1, cereal);
 
-       // cDao.update(cereal);
-        //gDao.update(game);
+        cDao.update(cereal);
+        gDao.update(game);
     }
 
-    public void saveGame(Activity activity){
+    public void saveGame(){
         for(Technology technology : game.getTechnologies()){
             tDao.update(technology);
         }

@@ -36,6 +36,7 @@ public class GameDao extends Dao<Game>{
                 game.setExp(cursor.getDouble(cursor.getColumnIndex("exp")));
                 game.setMoney(cursor.getInt(cursor.getColumnIndex("money")));
                 game.setEarnBySeconds(cursor.getDouble(cursor.getColumnIndex("earnBySeconds")));
+                game.setDbtIdle(cursor.getLong(cursor.getColumnIndex("dbtIdle")));
 
                 games.add(game);
             }

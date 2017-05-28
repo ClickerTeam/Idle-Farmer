@@ -14,6 +14,7 @@ public class Game implements Serializable {
     private double exp;
     private double money;
     private double earnBySeconds;
+    private long dbtIdle;
     private List<Cereal> cereals;
     private List<Technology> technologies;
 
@@ -66,6 +67,14 @@ public class Game implements Serializable {
 
     public void setEarnBySeconds(double earnBySeconds) {
         this.earnBySeconds = earnBySeconds;
+    }
+
+    public long getDbtIdle() {
+        return dbtIdle;
+    }
+
+    public void setDbtIdle(long dbtIdle) {
+        this.dbtIdle = dbtIdle;
     }
 
     public List<Cereal> getCereals() {
