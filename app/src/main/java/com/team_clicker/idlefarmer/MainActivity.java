@@ -20,7 +20,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private GameService service = new GameService(this);
     private TextView tvMoney;
-    private ListView listViewCereals;
+        private ListView listViewCereals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         service.init();
 
         tvMoney = (TextView) findViewById(R.id.valueMoney);
-        tvMoney.setText(String.valueOf(service.getGame().getMoney()) + "$");
+        setTextMoneyTV(service.getGame().getMoney());
 
         List<Cereal> cerealsList = service.getGame().getCereals();
 
@@ -52,11 +52,20 @@ public class MainActivity extends AppCompatActivity {
                 service.getGame().setMoney(money);
                 service.updateCereal(entry);
 
-                tvMoney.setText(String.valueOf(money) + "$");
+                setTextMoneyTV(money);
+
                 listViewCereals.invalidateViews();
                 listViewCereals.refreshDrawableState();
             }
 
         }
     };
+
+    private void setTextMoneyTV(double money){
+        if(money > 999999){
+            tvMoney.setText(String.format("%.2e",money) + "$");
+        } else {
+            tvMoney.setText(String.format("%.2f",money) + "$");
+        }
+    }
 }

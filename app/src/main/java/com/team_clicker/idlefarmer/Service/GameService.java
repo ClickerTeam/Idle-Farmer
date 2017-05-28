@@ -19,15 +19,18 @@ import java.io.Serializable;
 public class GameService implements Serializable {
     private Game game;
     private Activity activity;
+    private GameDao gDao;
+    private CerealDao cDao;
+    private TechnologyDao tDao;
 
     public GameService(Activity activity) {
         this.activity = activity;
     }
 
     public void init(){
-        GameDao gDao = new GameDao(activity);
-        CerealDao cDao = new CerealDao(activity);
-        TechnologyDao tDao = new TechnologyDao(activity);
+        gDao = new GameDao(activity);
+        cDao = new CerealDao(activity);
+        tDao = new TechnologyDao(activity);
 
         game = gDao.getGame();
         game.setCereals(cDao.getAll());
@@ -35,8 +38,6 @@ public class GameService implements Serializable {
     }
 
     public void updateCereal(Cereal cereal){
-        CerealDao cDao = new CerealDao(activity);
-
         Cereal previousCereal = cDao.get(cereal.getId());
         int levelRise = cereal.getLevel() - previousCereal.getLevel();
         double price = cereal.getCurrentPrice();
@@ -54,16 +55,15 @@ public class GameService implements Serializable {
 
         cereal.setCurrentPrice(price);
         cereal.setCurrentYield(yield);
+        game.setEarnBySeconds(game.getEarnBySeconds() + yield);
+
         game.getCereals().set(cereal.getId() - 1, cereal);
 
        // cDao.update(cereal);
+        //gDao.update(game);
     }
 
     public void saveGame(Activity activity){
-        GameDao gDao = new GameDao(activity);
-        CerealDao cDao = new CerealDao(activity);
-        TechnologyDao tDao = new TechnologyDao(activity);
-
         for(Technology technology : game.getTechnologies()){
             tDao.update(technology);
         }

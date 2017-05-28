@@ -43,10 +43,20 @@ public class CerealAdapter extends ArrayAdapter<Cereal> {
 
         Cereal cereal = getItem(position);
 
-        viewHolder.price.setText(cereal.getCurrentPrice()+"$");
+        if(cereal.getCurrentPrice() > 999999){
+            viewHolder.price.setText(String.format("%.2e",cereal.getCurrentPrice()) +"$");
+        } else {
+            viewHolder.price.setText(String.format("%.2f",cereal.getCurrentPrice()) +"$");
+        }
+
         viewHolder.level.setText(""+cereal.getLevel());
         viewHolder.name.setText(cereal.getName());
-        viewHolder.yield.setText(""+cereal.getCurrentYield());
+
+        if(cereal.getCurrentYield() > 999999){
+            viewHolder.yield.setText(String.format("%.2e", cereal.getCurrentYield()));
+        } else {
+            viewHolder.yield.setText(String.format("%.2f", cereal.getCurrentYield()));
+        }
 
         return convertView;
     }
