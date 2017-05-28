@@ -1,12 +1,9 @@
 package com.team_clicker.idlefarmer;
 
-import android.annotation.SuppressLint;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -14,7 +11,6 @@ import com.team_clicker.idlefarmer.adapter.CerealAdapter;
 import com.team_clicker.idlefarmer.model.Cereal;
 import com.team_clicker.idlefarmer.service.GameService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +19,8 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity {
     private GameService service = new GameService(this);
-    private TextView money;
+    private TextView tvMoney;
+    private ListView listViewCereals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +30,33 @@ public class MainActivity extends AppCompatActivity {
 
         service.init();
 
-        money = (TextView) findViewById(R.id.valueMoney);
-        money.setText(String.valueOf(service.getGame().getMoney()) + "$");
+        tvMoney = (TextView) findViewById(R.id.valueMoney);
+        tvMoney.setText(String.valueOf(service.getGame().getMoney()) + "$");
 
         List<Cereal> cerealsList = service.getGame().getCereals();
 
-        ListView ls = (ListView)findViewById(R.id.cereals);
+        listViewCereals = (ListView)findViewById(R.id.cereals);
+        listViewCereals.setOnItemClickListener(cerealClick);
+
         CerealAdapter adapter = new CerealAdapter(getApplicationContext(), cerealsList);
-        ls.setAdapter(adapter);
+        listViewCereals.setAdapter(adapter);
     }
 
+    private AdapterView.OnItemClickListener cerealClick = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Cereal entry = (Cereal)parent.getAdapter().getItem(position);
+            if(service.getGame().getMoney() >= entry.getCurrentPrice()){
+                entry.setLevel(entry.getLevel() + 1);
+                double money = service.getGame().getMoney() - entry.getCurrentPrice();
+                service.getGame().setMoney(money);
+                service.updateCereal(entry);
+
+                tvMoney.setText(String.valueOf(money) + "$");
+                listViewCereals.invalidateViews();
+                listViewCereals.refreshDrawableState();
+            }
+
+        }
+    };
 }

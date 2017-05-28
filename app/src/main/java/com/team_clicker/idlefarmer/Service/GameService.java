@@ -1,6 +1,7 @@
 package com.team_clicker.idlefarmer.service;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.team_clicker.idlefarmer.dao.CerealDao;
 import com.team_clicker.idlefarmer.dao.GameDao;
@@ -34,22 +35,28 @@ public class GameService implements Serializable {
     }
 
     public void updateCereal(Cereal cereal){
-        // x + log1p(x) où x = le rendement de la propriété
-        // x * coeff où x = prix à payer
-        Cereal previousCereal = game.getCereals().get(cereal.getId() - 1);
+        CerealDao cDao = new CerealDao(activity);
+
+        Cereal previousCereal = cDao.get(cereal.getId());
         int levelRise = cereal.getLevel() - previousCereal.getLevel();
         double price = cereal.getCurrentPrice();
         double yield = cereal.getCurrentYield();
+
         for(int i = 0; i < levelRise; i++){
             price *= cereal.getCoeff();
-            yield += Math.log1p(yield);
+            if(cereal.getLevel() == 1){
+                yield = cereal.getBaseYield();
+            } else {
+                yield += Math.log1p(yield);
+            }
+
         }
+
         cereal.setCurrentPrice(price);
         cereal.setCurrentYield(yield);
         game.getCereals().set(cereal.getId() - 1, cereal);
 
-        CerealDao cDao = new CerealDao(activity);
-        cDao.update(cereal);
+       // cDao.update(cereal);
     }
 
     public void saveGame(Activity activity){
