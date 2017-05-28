@@ -2,8 +2,6 @@ package com.team_clicker.idlefarmer.runnable;
 
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
-import android.widget.TextView;
 
 import com.team_clicker.idlefarmer.MainActivity;
 import com.team_clicker.idlefarmer.model.Cereal;
