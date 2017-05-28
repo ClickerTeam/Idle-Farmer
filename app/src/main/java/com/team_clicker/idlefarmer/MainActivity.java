@@ -1,71 +1,1 @@
-package com.team_clicker.idlefarmer;
-
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import com.team_clicker.idlefarmer.adapter.CerealAdapter;
-import com.team_clicker.idlefarmer.model.Cereal;
-import com.team_clicker.idlefarmer.service.GameService;
-
-import java.util.List;
-
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
-public class MainActivity extends AppCompatActivity {
-    private GameService service = new GameService(this);
-    private TextView tvMoney;
-        private ListView listViewCereals;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_main);
-
-        service.init();
-
-        tvMoney = (TextView) findViewById(R.id.valueMoney);
-        setTextMoneyTV(service.getGame().getMoney());
-
-        List<Cereal> cerealsList = service.getGame().getCereals();
-
-        listViewCereals = (ListView)findViewById(R.id.cereals);
-        listViewCereals.setOnItemClickListener(cerealClick);
-
-        CerealAdapter adapter = new CerealAdapter(getApplicationContext(), cerealsList);
-        listViewCereals.setAdapter(adapter);
-    }
-
-    private AdapterView.OnItemClickListener cerealClick = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Cereal entry = (Cereal)parent.getAdapter().getItem(position);
-            if(service.getGame().getMoney() >= entry.getCurrentPrice()){
-                entry.setLevel(entry.getLevel() + 1);
-                double money = service.getGame().getMoney() - entry.getCurrentPrice();
-                service.getGame().setMoney(money);
-                service.updateCereal(entry);
-
-                setTextMoneyTV(money);
-
-                listViewCereals.invalidateViews();
-                listViewCereals.refreshDrawableState();
-            }
-
-        }
-    };
-
-    private void setTextMoneyTV(double money){
-        if(money > 999999){
-            tvMoney.setText(String.format("%.2e",money) + "$");
-        } else {
-            tvMoney.setText(String.format("%.2f",money) + "$");
-        }
-    }
-}
+package com.team_clicker.idlefarmer;import android.os.Handler;import android.os.Message;import android.support.v7.app.AppCompatActivity;import android.os.Bundle;import android.view.View;import android.widget.AdapterView;import android.widget.ListView;import android.widget.TextView;import com.team_clicker.idlefarmer.adapter.CerealAdapter;import com.team_clicker.idlefarmer.model.Cereal;import com.team_clicker.idlefarmer.runnable.CerealRun;import com.team_clicker.idlefarmer.service.GameService;import java.util.List;import java.util.Timer;/** * An example full-screen activity that shows and hides the system UI (i.e. * status bar and navigation/system bar) with user interaction. */public class MainActivity extends AppCompatActivity {    public final static int MESSAGE_MONEY = 1;    private GameService service = new GameService(this);    private TextView tvMoney;    private ListView listViewCereals;    @Override    protected void onCreate(Bundle savedInstanceState) {        super.onCreate(savedInstanceState);        setContentView(R.layout.activity_main);        service.init();        tvMoney = (TextView) findViewById(R.id.valueMoney);        setTextMoneyTV(service.getGame().getMoney());        for(Cereal cereal : service.getGame().getCereals()){            if(cereal.getLevel() > 1){                Timer timer = new Timer();                timer.schedule(new CerealRun(cereal, service.getGame(), moneyHandler), 0, cereal.getGrowthTime()*1000);            }        }        List<Cereal> cerealsList = service.getGame().getCereals();        listViewCereals = (ListView)findViewById(R.id.cereals);        listViewCereals.setOnItemClickListener(cerealClick);        CerealAdapter adapter = new CerealAdapter(getApplicationContext(), cerealsList);        listViewCereals.setAdapter(adapter);    }    private AdapterView.OnItemClickListener cerealClick = new AdapterView.OnItemClickListener() {        @Override        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {            Cereal entry = (Cereal)parent.getAdapter().getItem(position);            if(service.getGame().getMoney() >= entry.getCurrentPrice()){                entry.setLevel(entry.getLevel() + 1);                if(entry.getLevel() == 1){                    Timer timer = new Timer();                    timer.schedule(new CerealRun(entry, service.getGame(), moneyHandler), 0, entry.getGrowthTime()*1000);                }                service.getGame().removeMoney(entry.getCurrentPrice());                service.updateCereal(entry);                setTextMoneyTV(service.getGame().getMoney());                listViewCereals.invalidateViews();                listViewCereals.refreshDrawableState();            }        }    };    private Handler moneyHandler = new Handler(){        @Override        public void handleMessage(Message msg) {            super.handleMessage(msg);            if(msg.what == MESSAGE_MONEY){                double money = (double)msg.obj;                setTextMoneyTV(money);            }        }    };    private void setTextMoneyTV(double money){        if(money > 999999){            tvMoney.setText(String.format("%.2e",money) + "$");        } else {            tvMoney.setText(String.format("%.2f",money) + "$");        }    }}

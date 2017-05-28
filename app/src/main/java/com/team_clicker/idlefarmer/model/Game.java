@@ -28,6 +28,14 @@ public class Game implements Serializable {
         this.technologies = technologies;
     }
 
+    public void addMoney(double money){
+        this.money += money;
+    }
+
+    public void removeMoney(double money){
+        this.money -= money;
+    }
+
     public double getExp() {
         return exp;
     }

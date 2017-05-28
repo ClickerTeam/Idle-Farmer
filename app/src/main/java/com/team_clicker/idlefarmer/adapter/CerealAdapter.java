@@ -27,17 +27,16 @@ public class CerealAdapter extends ArrayAdapter<Cereal> {
 
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_element_cereals, parent, false);
-
         }
 
         CerealsViewHolder viewHolder  = (CerealsViewHolder) convertView.getTag();
 
         if(viewHolder == null){
             viewHolder = new CerealsViewHolder();
-            viewHolder.yield = (TextView) convertView.findViewById(R.id.element_liste_cereals_value_yield);
-            viewHolder.level = (TextView) convertView.findViewById(R.id.element_liste_cereals_level);
-            viewHolder.name = (TextView) convertView.findViewById(R.id.element_liste_cereals_name);
-            viewHolder.price = (TextView) convertView.findViewById(R.id.element_liste_cereals_price);
+            viewHolder.yield = (TextView) convertView.findViewById(R.id.element_list_cereals_value_yield);
+            viewHolder.level = (TextView) convertView.findViewById(R.id.element_list_cereals_level);
+            viewHolder.name = (TextView) convertView.findViewById(R.id.element_list_cereals_name);
+            viewHolder.price = (TextView) convertView.findViewById(R.id.element_list_cereals_price);
             convertView.setTag(viewHolder);
         }
 

@@ -2,15 +2,20 @@ package com.team_clicker.idlefarmer.service;
 
 import android.app.Activity;
 import android.util.Log;
+import android.widget.TextView;
 
+import com.team_clicker.idlefarmer.MainActivity;
 import com.team_clicker.idlefarmer.dao.CerealDao;
 import com.team_clicker.idlefarmer.dao.GameDao;
 import com.team_clicker.idlefarmer.dao.TechnologyDao;
 import com.team_clicker.idlefarmer.model.Cereal;
 import com.team_clicker.idlefarmer.model.Game;
 import com.team_clicker.idlefarmer.model.Technology;
+import com.team_clicker.idlefarmer.runnable.CerealRun;
 
 import java.io.Serializable;
+import java.util.Timer;
+import java.util.logging.Handler;
 
 /**
  * Created by pierr on 26/05/2017.

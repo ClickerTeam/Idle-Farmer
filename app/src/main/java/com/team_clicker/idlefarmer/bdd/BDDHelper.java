@@ -46,23 +46,23 @@ public class BDDHelper extends SQLiteOpenHelper {
 
         db.execSQL("INSERT INTO game VALUES (1,0,5,0)");
 
-        db.execSQL("INSERT INTO cereals VALUES (1,'Blé',0,5,0.1,5,0,0,1.1)");
+        db.execSQL("INSERT INTO cereals VALUES (1,'Blé',0,5,0.1,5,0,5,1.1)");
 
-        db.execSQL("INSERT INTO cereals VALUES (2,'Orge',0,2500,1,2500,0,0,1.09)");
+        db.execSQL("INSERT INTO cereals VALUES (2,'Orge',0,2500,1,2500,0,15,1.09)");
 
-        db.execSQL("INSERT INTO cereals VALUES (3,'Avoine',0,15000,5,15000,0,0,1.08)");
+        db.execSQL("INSERT INTO cereals VALUES (3,'Avoine',0,15000,5,15000,0,30,1.08)");
 
-        db.execSQL("INSERT INTO cereals VALUES (4,'Colza',0,50000,20,50000,0,0,1.07)");
+        db.execSQL("INSERT INTO cereals VALUES (4,'Colza',0,50000,20,50000,0,45,1.07)");
 
-        db.execSQL("INSERT INTO cereals VALUES (5,'Houblon',0,100000,50,100000,0,0,1.06)");
+        db.execSQL("INSERT INTO cereals VALUES (5,'Houblon',0,100000,50,100000,0,60,1.06)");
 
-        db.execSQL("INSERT INTO cereals VALUES (6,'Maïs',0,250000,100,250000,0,0,1.05)");
+        db.execSQL("INSERT INTO cereals VALUES (6,'Maïs',0,250000,100,250000,0,75,1.05)");
 
-        db.execSQL("INSERT INTO cereals VALUES (7,'Riz',0,500000,500,500000,0,0,1.04)");
+        db.execSQL("INSERT INTO cereals VALUES (7,'Riz',0,500000,500,500000,0,90,1.04)");
 
-        db.execSQL("INSERT INTO cereals VALUES (8,'Seigle',0,1000000,1000,1000000,0,0,1.03)");
+        db.execSQL("INSERT INTO cereals VALUES (8,'Seigle',0,1000000,1000,1000000,0,105,1.03)");
 
-        db.execSQL("INSERT INTO cereals VALUES (9,'Lin',0,10000000,2000,10000000,0,0,1.01)");
+        db.execSQL("INSERT INTO cereals VALUES (9,'Lin',0,10000000,2000,10000000,0,120,1.01)");
 
     }
 }
