@@ -1,64 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/element_list_cereals_level"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="15"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="15dp"/>
-
-
-    <TextView
-        android:id="@+id/element_list_cereals_value_yield"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_below="@id/element_list_cereals_level"
-        android:layout_marginLeft="15dp"
-        android:text="15"/>
-
-    <TextView
-        android:id="@+id/element_liste_cereals_unity_yield"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_below="@id/element_list_cereals_level"
-        android:layout_toRightOf="@id/element_list_cereals_value_yield"
-        android:layout_marginLeft="2dp"
-        android:text="$/s"/>
-
-    <ProgressBar
-        android:id="@+id/growthProgress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:progress="50"
-        android:layout_marginTop="5dp"
-        android:layout_toRightOf="@id/element_liste_cereals_unity_yield"
-        android:layout_below="@id/element_list_cereals_level"
-        android:layout_toLeftOf="@+id/element_list_cereals_price"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"/>
-
-    <TextView
-        android:id="@+id/element_list_cereals_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="5dp"
-        android:layout_marginRight="15dp"
-        android:text="name"/>
-
-    <TextView
-        android:id="@id/element_list_cereals_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/element_list_cereals_name"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="15dp"
-        android:text="price"/>
-</RelativeLayout>
+<?xml version="1.0" encoding="utf-8"?><RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"    android:layout_width="match_parent" android:layout_height="match_parent">    <TextView        android:id="@+id/element_list_cereals_level"        android:layout_width="wrap_content"        android:layout_height="wrap_content"        android:text="15"        android:layout_marginBottom="5dp"        android:layout_marginLeft="15dp"/>    <TextView        android:id="@+id/element_list_cereals_value_yield"        android:layout_width="wrap_content"        android:layout_height="wrap_content"        android:layout_marginTop="5dp"        android:layout_below="@id/element_list_cereals_level"        android:layout_marginLeft="15dp"        android:text="15"/>    <TextView        android:id="@+id/element_liste_cereals_unity_yield"        android:layout_width="wrap_content"        android:layout_height="wrap_content"        android:layout_marginTop="5dp"        android:layout_below="@id/element_list_cereals_level"        android:layout_toRightOf="@id/element_list_cereals_value_yield"        android:layout_marginLeft="2dp"        android:text="$/s"/>    <ProgressBar        android:id="@+id/growthProgress"        android:layout_width="match_parent"        android:layout_height="wrap_content"        style="?android:attr/progressBarStyleHorizontal"        android:progress="0"        android:layout_marginTop="5dp"        android:layout_toRightOf="@id/element_liste_cereals_unity_yield"        android:layout_below="@id/element_list_cereals_level"        android:layout_toLeftOf="@+id/element_list_cereals_price"        android:layout_marginLeft="15dp"        android:layout_marginRight="15dp"/>    <TextView        android:id="@+id/element_list_cereals_name"        android:layout_width="wrap_content"        android:layout_height="wrap_content"        android:layout_alignParentRight="true"        android:layout_marginBottom="5dp"        android:layout_marginRight="15dp"        android:text="name"/>    <TextView        android:id="@id/element_list_cereals_price"        android:layout_width="wrap_content"        android:layout_height="wrap_content"        android:layout_alignParentRight="true"        android:layout_below="@id/element_list_cereals_name"        android:layout_marginTop="5dp"        android:layout_marginRight="15dp"        android:text="price"/></RelativeLayout>
