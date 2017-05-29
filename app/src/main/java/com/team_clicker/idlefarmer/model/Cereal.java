@@ -1,6 +1,7 @@
 package com.team_clicker.idlefarmer.model;
 
 import android.support.annotation.NonNull;
+import android.widget.ProgressBar;
 
 import java.io.Serializable;
 
@@ -16,6 +17,7 @@ public class Cereal implements Serializable, Comparable<Cereal> {
     private int level;
     private double currentPrice;
     private double currentYield;
+    private ProgressBar progressBar;
     //TODO Gestion  de l'image
     //private Image picture;
     private int growthTime;
@@ -107,6 +109,14 @@ public class Cereal implements Serializable, Comparable<Cereal> {
 
     public void setCoeff(double coeff) {
         this.coeff = coeff;
+    }
+
+    public ProgressBar getProgressBar() {
+        return progressBar;
+    }
+
+    public void setProgressBar(ProgressBar progressBar) {
+        this.progressBar = progressBar;
     }
 
     @Override

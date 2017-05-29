@@ -63,9 +63,6 @@ public class GameService implements Serializable {
         game.setEarnBySeconds(game.getEarnBySeconds() + yield);
 
         game.getCereals().set(cereal.getId() - 1, cereal);
-
-        cDao.update(cereal);
-        gDao.update(game);
     }
 
     public void saveGame(){

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.team_clicker.idlefarmer.R;
@@ -37,10 +38,15 @@ public class CerealAdapter extends ArrayAdapter<Cereal> {
             viewHolder.level = (TextView) convertView.findViewById(R.id.element_list_cereals_level);
             viewHolder.name = (TextView) convertView.findViewById(R.id.element_list_cereals_name);
             viewHolder.price = (TextView) convertView.findViewById(R.id.element_list_cereals_price);
+
             convertView.setTag(viewHolder);
         }
 
         Cereal cereal = getItem(position);
+
+        ProgressBar progressBar = (ProgressBar) convertView.findViewById(R.id.element_list_cereals_pb);
+
+        cereal.setProgressBar(progressBar);
 
         if(cereal.getCurrentPrice() > 999999){
             viewHolder.price.setText(String.format("%.2e",cereal.getCurrentPrice()) +"$");
@@ -66,5 +72,6 @@ public class CerealAdapter extends ArrayAdapter<Cereal> {
         public TextView name;
         public TextView level;
         public TextView yield;
+
     }
 }
