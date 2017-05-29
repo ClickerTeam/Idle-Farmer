@@ -17,7 +17,9 @@ public class Cereal implements Serializable, Comparable<Cereal> {
     private int level;
     private double currentPrice;
     private double currentYield;
+
     private ProgressBar progressBar;
+
     //TODO Gestion  de l'image
     //private Image picture;
     private int growthTime;

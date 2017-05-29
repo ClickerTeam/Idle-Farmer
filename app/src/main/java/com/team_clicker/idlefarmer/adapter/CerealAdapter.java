@@ -1,6 +1,7 @@
 package com.team_clicker.idlefarmer.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +45,7 @@ public class CerealAdapter extends ArrayAdapter<Cereal> {
 
         Cereal cereal = getItem(position);
 
-        ProgressBar progressBar = (ProgressBar) convertView.findViewById(R.id.element_list_cereals_pb);
+        ProgressBar progressBar = (ProgressBar) convertView.findViewById(R.id.growthProgress);
 
         cereal.setProgressBar(progressBar);
 
