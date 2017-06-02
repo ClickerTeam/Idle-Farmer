@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.team_clicker.idlefarmer.R;
 import com.team_clicker.idlefarmer.model.Cereal;
+import com.team_clicker.idlefarmer.view.CerealView;
 
 import java.util.List;
 
@@ -18,15 +19,14 @@ import java.util.List;
  * Created by Melto on 26/05/2017.
  */
 
-public class CerealAdapter extends ArrayAdapter<Cereal> {
+public class CerealAdapter extends ArrayAdapter<CerealView> {
 
-    public CerealAdapter(Context context, List<Cereal> cereals){
+    public CerealAdapter(Context context, List<CerealView> cereals){
         super(context, 0, cereals);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_element_cereals, parent, false);
         }
@@ -43,25 +43,25 @@ public class CerealAdapter extends ArrayAdapter<Cereal> {
             convertView.setTag(viewHolder);
         }
 
-        Cereal cereal = getItem(position);
+        CerealView cerealView = getItem(position);
 
         ProgressBar progressBar = (ProgressBar) convertView.findViewById(R.id.growthProgress);
 
-        cereal.setProgressBar(progressBar);
+        cerealView.setProgressBar(progressBar);
 
-        if(cereal.getCurrentPrice() > 999999){
-            viewHolder.price.setText(String.format("%.2e",cereal.getCurrentPrice()) +"$");
+        if(cerealView.getPriceDisplayed()> 999999){
+            viewHolder.price.setText(String.format("%.2e",cerealView.getPriceDisplayed()) +"$");
         } else {
-            viewHolder.price.setText(String.format("%.2f",cereal.getCurrentPrice()) +"$");
+            viewHolder.price.setText(String.format("%.2f",cerealView.getPriceDisplayed()) +"$");
         }
 
-        viewHolder.level.setText(""+cereal.getLevel());
-        viewHolder.name.setText(cereal.getName());
+        viewHolder.level.setText("" + cerealView.getCereal().getLevel());
+        viewHolder.name.setText(cerealView.getCereal().getName());
 
-        if(cereal.getCurrentYield() > 999999){
-            viewHolder.yield.setText(String.format("%.2e", cereal.getCurrentYield()));
+        if(cerealView.getCereal().getCurrentYield() > 999999){
+            viewHolder.yield.setText(String.format("%.2e", cerealView.getCereal().getCurrentYield()));
         } else {
-            viewHolder.yield.setText(String.format("%.2f", cereal.getCurrentYield()));
+            viewHolder.yield.setText(String.format("%.2f", cerealView.getCereal().getCurrentYield()));
         }
 
         return convertView;
