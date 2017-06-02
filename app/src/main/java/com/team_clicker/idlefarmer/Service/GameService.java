@@ -50,7 +50,6 @@ public class GameService implements Serializable {
 
         for(int i = 0; i < levelRise; i++){
             price *= cereal.getCoeff();
-            System.out.println(price);
             if(cereal.getLevel() == 1){
                 yield = cereal.getBaseYield();
             } else {
