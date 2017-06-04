@@ -26,7 +26,7 @@ public class CerealRun extends TimerTask {
 
     public void run() {
         if(cereal.getLevel() > 0){
-            game.addMoney(cereal.getCurrentYield() * cereal.getGrowthTime());
+            game.addMoney(cereal.getCurrentYield());
             sendMessage(game.getMoney());
         }
     }
