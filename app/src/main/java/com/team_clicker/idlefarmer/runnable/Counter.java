@@ -25,7 +25,7 @@ public class Counter implements Runnable {
 
         while(!stop){
             try{
-                Thread.sleep(1000);
+                Thread.sleep(41);
                 sendMessage();
             } catch(InterruptedException ie) {
 
